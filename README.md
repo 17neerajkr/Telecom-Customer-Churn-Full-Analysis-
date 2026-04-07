@@ -299,4 +299,26 @@ Improves customer lifetime value
 
 
 Enables data-driven decision making
+📌 Future Improvements
+
+
+
+
+Add XGBoost model for better accuracy
+
+
+
+
+Implement model explainability (SHAP)
+
+
+
+
+Deploy using Streamlit
+
+
+
+
+Integrate real-time data pipeline
+
 
