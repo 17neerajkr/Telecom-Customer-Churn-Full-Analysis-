@@ -1,157 +1,122 @@
-# 📄 Telecom Customer Churn – Full Analysis Summary Report
+📊 Telecom Customer Churn Analysis & Prediction
+🚀 Project Overview
+This project focuses on analyzing and predicting customer churn in the telecom industry using data analysis, machine learning, and business intelligence (Power BI dashboard).
+The goal is to identify high-risk customers, understand key churn drivers, and provide actionable insights to improve customer retention.
+🧠 Problem Statement
+Customer churn is a critical problem for telecom companies as it directly impacts revenue.
+This project aims to:
+Analyze customer behavior
+Identify churn patterns
+Predict potential churn customers
+Support data-driven retention strategies
+🛠️ Tech Stack
+Python (Pandas, NumPy, Scikit-learn)
+Data Analysis & EDA
+Machine Learning (Random Forest)
+ETL Pipeline
+Power BI (Dashboard)
+CI/CD (GitHub Actions)
+Git & GitHub
+📁 Project Structure
+Telecom-Churn/
+│── data/
+│── notebook/
+│── src/
+│   ├── data_ingestion.py
+│   ├── preprocessing.py
+│   ├── model_training.py
+│── app.py
+│── dashboard/
+│   └── churn_dashboard.pbix
+│── README.md
 
-## 📝 1. Introduction
+🔄 Project Workflow
+1️⃣ Data Ingestion
+Loaded dataset using Pandas
+Verified structure, columns, and missing values
+2️⃣ Data Preprocessing
+Cleaned data and handled missing values
+Converted categorical variables into numerical format
+Transformed target variable (Churn: Yes/No → 1/0)
+3️⃣ Exploratory Data Analysis (EDA)
+Analyzed customer distribution and churn patterns
+Identified key features influencing churn:
+Contract type
+Payment method
+Internet service
+Tenure
+4️⃣ Model Training
+Built a Random Forest Classifier
+Split dataset into training and testing sets
+Evaluated model performance using accuracy
+⚙️ Machine Learning Pipeline
+Data Ingestion → Preprocessing → Model Training
+Modular code structure using Python files
+Automated execution via app.py
+📊 Power BI Dashboard
+🔝 KPI Metrics
+Total Customers: 6687
+Churn Customers: 1796
+Churn Rate: 26.86%
+📈 Visualizations
+Customers by Contract Type (Donut Chart)
+Churn by Category (Pie Chart)
+Churn Rate by Demographics (Bar Chart)
+Churn Rate by State (Map)
+Interactive Filters (Gender, Contract, Payment Method)
+🔍 Key Insights
+Customers with month-to-month contracts have the highest churn
+Fiber optic users show higher churn rates
+Electronic check payments are linked to higher churn
+Customers with low tenure are more likely to leave
+Competitor offers are a major reason for churn
+🔗 Data Model (Relationships)
+erDiagram
 
-This project analyzes the **Telecom Customer Churn** dataset to identify the major factors influencing customer retention.  
-The objective is to understand why customers leave and determine which service features contribute most to churn.
+CUSTOMER {
+    string CustomerID
+    string Gender
+    int Tenure
+}
 
-The study applies **Exploratory Data Analysis (EDA)**, visual interpretation, and industry-focused reasoning to uncover meaningful insights.
+CONTRACT {
+    string CustomerID
+    string ContractType
+}
 
----
+PAYMENT {
+    string CustomerID
+    string PaymentMethod
+    float MonthlyCharges
+}
 
-## 🚀 Industry-Focused Summary
+CHURN {
+    string CustomerID
+    int Churn
+}
 
-The Telecom Customer Churn Analysis delivers **actionable business intelligence** by evaluating customer behavior, service utilization, and churn-driving attributes. Using structured EDA, this study identifies:
+CUSTOMER ||--|| CONTRACT : has
+CUSTOMER ||--|| PAYMENT : uses
+CUSTOMER ||--|| CHURN : status
 
-- Operational inefficiencies  
-- Revenue leakage points  
-- Service experience issues  
-- Customer dissatisfaction patterns
+🎯 Business Impact
+Helps identify high-risk customers
+Supports targeted retention strategies
+Improves customer lifetime value
+Enables data-driven decision making
+▶️ How to Run the Project
+pip install -r requirements.txt
+python app.py
 
-The analysis highlights that churn is strongly impacted by:
-
-- **Internet service performance** (Fiber Optic dissatisfaction)
-- **Short-term agreements**
-- **Payment friction** from manual/electronic check billing
-- Lack of **value-added services** (Tech Support, Security, Backup, Device Protection)
-
-From an industry perspective, these insights help telecom operators:
-
-- Improve Customer Lifecycle Management (CLM)
-- Deploy targeted retention campaigns
-- Enhance digital billing journeys
-- Optimize pricing & bundling strategies
-- Build predictive churn models & segmentation strategies
-
----
-
-## 📊 2. Dataset Overview
-
-The dataset contains customer subscription information, billing preferences, service usage indicators, and churn status.
-
-### **Key Categorical Variables**
-- PhoneService
-- MultipleLines
-- InternetService
-- OnlineSecurity
-- OnlineBackup
-- DeviceProtection
-- TechSupport
-- StreamingTV
-- StreamingMovies
-- Contract
-- PaymentMethod
-- PaperlessBilling
-- Churn
-
-These attributes help evaluate customer behavior and service experience influencing churn.
-
----
-
-## 🧩 3. Column-by-Column Impact Explanation
-
-### ✔ PhoneService & MultipleLines
-- Minimal effect on churn  
-- Most customers have phone service → low dissatisfaction
-
-### ✔ InternetService (DSL / Fiber Optic / No Internet)
-- **Strongest churn predictor**
-- Fiber Optic users churn the most
-- DSL users churn less
-- No-internet users rarely churn  
-**Industry Insight:** Internet quality drives customer satisfaction.
-
-### ✔ OnlineSecurity / OnlineBackup / DeviceProtection / TechSupport
-- Customers without these add-on services churn more  
-**Industry Insight:** Value-added services improve retention.
-
-### ✔ StreamingTV & StreamingMovies
-- Moderate churn influence
-- Not major churn drivers
-
-### ✔ Contract (Month-to-Month / One-Year / Two-Year)
-- **Strong churn indicator**
-- Month-to-month contracts → highest churn
-- Long-term contracts → loyalty & stability
-
-### ✔ PaperlessBilling
-- Paperless billing users churn more
-- Often linked with monthly contracts & electronic checks
-
-### ✔ PaymentMethod
-- **Electronic Check users churn most**
-- Auto-payment (Credit Card / Bank Transfer) reduces churn
-
-### ✔ Churn
-- Target variable – indicates if a customer left
-
----
-
-## 📌 4. Key Insights (Pros & Cons)
-
-### ⭐ Pros (Retention Drivers)
-- Long-term contracts reduce churn
-- Add-on services improve loyalty
-- DSL users show stable satisfaction
-- Auto-payment billing lowers churn
-
-### ⚠ Cons (Risk Indicators)
-- Fiber Optic service dissatisfaction causes high churn
-- Month-to-month users frequently churn
-- Electronic check + paperless billing users are high-risk segment
-- Lack of support & security services increases churn
-
----
-
-## 🏭 5. Industry Importance
-
-Customer churn analysis is crucial in telecom and industries like **SaaS, Banking, OTT, Insurance, Retail**.
-
-### **Business Benefits**
-- Improves customer retention
-- Identifies dissatisfaction drivers
-- Optimizes pricing, contracts, and bundles
-- Reduces revenue leakage
-- Enables targeted marketing & segmentation
-- Improves lifetime customer value
-
----
-
-## 🧠 6. Final Conclusion
-
-Churn is strongly influenced by **internet service type, contract duration, payment method, and add-on service availability**.
-
-### **High Churn Groups**
-- Fiber Optic users
-- Month-to-month contract holders
-- Electronic check + paperless billing customers
-- Customers without support / backup / security services
-
-### **Low Churn Groups**
-- Long-term contract customers
-- Users with multiple add-on services
-- Auto-payment users
-
-### **Overall Recommendation**
-Telecom companies should:
-- Improve internet quality
-- Promote long-term plans
-- Strengthen customer support
-- Encourage auto-payment options
-
-These steps can significantly reduce churn and enhance customer satisfaction.
-
----
-
-## 🙏 Thank You  
-**Neeraj Kumar**
+📌 Future Improvements
+Add XGBoost model for better accuracy
+Implement model explainability (SHAP)
+Deploy using Streamlit
+Integrate real-time data pipeline
+🔗 GitHub Repository
+👉 https://github.com/17neerajkr/Telecom-Customer-Churn-Full-Analysis-
+👨‍💻 Author
+Neeraj Kumar
+📎 LinkedIn: https://www.linkedin.com/in/neeraj-kumar-delhi
+⭐ If you like this project
+Give it a ⭐ on GitHub!
