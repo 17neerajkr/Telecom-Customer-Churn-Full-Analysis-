@@ -1,4 +1,4 @@
-# 📊 Telecom Customer Churn Analysis & Prediction
+# 📊 Telecom Customer Churn Analysis & Prediction Model 
 
 ## 🚀 Project Overview
 This project focuses on analyzing and predicting customer churn in the telecom industry using **data analysis, machine learning, and business intelligence (Power BI dashboard)**.
